@@ -4,14 +4,15 @@ import MyWalletLogo from "../components/MyWalletLogo"
 import { useContext, useRef } from "react"
 import { AuthContext } from "../contexts/authContext"
 
+
 export default function SignInPage() {
   const {login} = useContext(AuthContext)
-
   const email = useRef(null)
   const password = useRef(null)
-  function sendForm(){
+
+  function  sendForm(){
     event.preventDefault()
-    login(email.current.value,password.current.value)
+   login(email.current.value,password.current.value)
   }
   return (
     <SingInContainer>
