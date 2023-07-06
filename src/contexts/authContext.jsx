@@ -10,11 +10,13 @@ export const AuthProvider = ({ children }) => {
       email: email,
       password: password
     })
-      .then((res) => {
+      .then(async(res) => {
         localStorage.setItem("token", res.data)
         const token = localStorage.getItem("token")
         axios.defaults.headers.common['Authorization'] = token;
-        navigate("/home")
+        if(token){
+          navigate("/home")
+        }
       })
       .catch((err) => {
         alert(err.response.data)

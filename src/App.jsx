@@ -5,7 +5,6 @@ import SignInPage from "./pages/SignInPage"
 import SignUpPage from "./pages/SignUpPage"
 import TransactionsPage from "./pages/TransactionPage"
 import { AuthProvider } from "./contexts/authContext.jsx"
-import axios from "axios"
 export default function App() {
 
   const isLoged = () => {
