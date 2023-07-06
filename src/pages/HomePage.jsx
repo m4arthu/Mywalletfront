@@ -1,8 +1,22 @@
 import styled from "styled-components"
 import { BiExit } from "react-icons/bi"
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
-
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useEffect, useState } from "react"
 export default function HomePage() {
+  const navigate = useNavigate()
+  const [transations, setTransations] = useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/home")
+    .then((res) => {
+      setTransations(res.data)
+    }).catch((err) => {
+      alert(err)
+      navigate("/")
+    })
+  },[])   
+
   return (
     <HomeContainer>
       <Header>
@@ -11,23 +25,25 @@ export default function HomePage() {
       </Header>
 
       <TransactionsContainer>
-        <ul>
-          <ListItemContainer>
-            <div>
-              <span>30/11</span>
-              <strong>Almoço mãe</strong>
-            </div>
-            <Value color={"negativo"}>120,00</Value>
-          </ListItemContainer>
 
+        {transations.length  < 1 ?
           <ListItemContainer>
-            <div>
-              <span>15/11</span>
-              <strong>Salário</strong>
-            </div>
-            <Value color={"positivo"}>3000,00</Value>
-          </ListItemContainer>
-        </ul>
+            não há transações
+          </ListItemContainer> :
+          <ul>
+            {transations.map((t) => {
+              return (
+                <ListItemContainer key={t.id}>
+                  <div>
+                    <span>{t.data}</span>
+                    <strong>{t.title}</strong>
+                  </div>
+                  <Value color={t.type === "entrada" ? "positivo": "negativo"}>{t.value}</Value>
+                </ListItemContainer>
+              )
+            })}
+          </ul>
+        }
 
         <article>
           <strong>Saldo</strong>
