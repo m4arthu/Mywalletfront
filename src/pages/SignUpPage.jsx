@@ -23,11 +23,11 @@ export default function SignUpPage() {
     <SingUpContainer>
       <form onSubmit={sendForm}>
         <MyWalletLogo />
-        <input required ref={name} placeholder="Nome" type="text" />
-        <input required ref={email} placeholder="E-mail" type="email" />
-        <input required ref={password} placeholder="Senha" type="password" />
-        <input required ref={passwordConfirm} placeholder="Confirme a senha" type="password"  />
-        <button>Cadastrar</button>
+        <input required data-test="name" ref={name} placeholder="Nome" type="text" />
+        <input required data-test="email" ref={email} placeholder="E-mail" type="email" />
+        <input required data-test="password" ref={password} placeholder="Senha" type="password" />
+        <input required data-test="conf-password" ref={passwordConfirm} placeholder="Confirme a senha" type="password"  />
+        <button data-test="sign-up-submit">Cadastrar</button>
       </form>
 
       <Link to={"/"}>

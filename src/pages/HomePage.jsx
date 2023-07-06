@@ -45,8 +45,8 @@ export default function HomePage() {
   return (
     <HomeContainer>
       <Header>
-        <h1>Olá, {user}</h1>
-        <BiExit onClick={() => exit()} />
+        <h1 data-test="username">Olá, {user}</h1>
+        <BiExit data-test="logout" onClick={() => exit()} />
       </Header>
 
       <TransactionsContainer>
@@ -61,9 +61,9 @@ export default function HomePage() {
                 <ListItemContainer key={t._id}>
                   <div>
                     <span>{t.data}</span>
-                    <strong>{t.title}</strong>
+                    <strong data-test="registry-name">{t.title}</strong>
                   </div>
-                  <Value color={t.type === "entrada" ? "positivo" : "negativo"}>{t.value}</Value>
+                  <Value data-test="registry-amount" color={t.type === "entrada" ? "positivo" : "negativo"}>{t.value}</Value>
                 </ListItemContainer>
               )
             })}
@@ -72,20 +72,20 @@ export default function HomePage() {
 
         <article>
           <strong>Saldo</strong>
-          <Value color={saldo < 0 ? "negativo" : "positivo"}>{saldo}</Value>
+          <Value data-test="total-amount" color={saldo < 0 ? "negativo" : "positivo"}>{saldo}</Value>
         </article>
       </TransactionsContainer>
 
 
       <ButtonsContainer>
         <button>
-          <Link to={"/nova-transacao/entrada"}>
+          <Link data-test="new-income" to={"/nova-transacao/entrada"}>
             <AiOutlinePlusCircle />
             <p>Nova <br /> entrada</p>
           </Link>
         </button>
         <button>
-          <Link to={"/nova-transacao/saida"}>
+          <Link data-test="new-expense" to={"/nova-transacao/saida"}>
             <AiOutlineMinusCircle />
             <p>Nova <br />saída</p>
           </Link>
