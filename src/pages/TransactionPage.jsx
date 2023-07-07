@@ -16,7 +16,7 @@ export default function TransactionsPage() {
     event.preventDefault()
     axios.post(`${import.meta.env.VITE_API_URL}/transations`,
       {
-        value: Number(valor.current.value),
+        value: Number(Number(valor.current.value).toFixed(2)),
         descripton: descripton.current.value,
         type: params
       })

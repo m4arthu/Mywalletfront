@@ -66,7 +66,7 @@ export default function HomePage() {
                       <span>{t.data}</span>
                       <strong data-test="registry-name">{t.title}</strong>
                     </div>
-                    <Value data-test="registry-amount" color={t.type === "entrada" ? "positivo" : "negativo"}>{t.value}</Value>
+                    <Value data-test="registry-amount" color={t.type === "entrada" ? "positivo" : "negativo"}>{t.value.toString().replace(".",",")}</Value>
                   </ListItemContainer>
                 )
               })}
@@ -75,7 +75,7 @@ export default function HomePage() {
 
           <article>
             <strong>Saldo</strong>
-            <Value data-test="total-amount" color={saldo < 0 ? "negativo" : "positivo"}>{saldo}</Value>
+            <Value data-test="total-amount" color={saldo < 0 ? "negativo" : "positivo"}>{saldo.toString().replace(".",",")}</Value>
           </article>
         </TransactionsContainer>
 
