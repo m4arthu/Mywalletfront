@@ -23,7 +23,7 @@ export default function HomePage() {
     useEffect(() => {
       axios.get(`${import.meta.env.VITE_API_URL}/home`)
         .then((res) => {
-          setTransations(res.data)
+          setTransations(res.data.reverse())
           axios.get(`${import.meta.env.VITE_API_URL}/users`)
             .then((res) => {
               setUser(res.data)
@@ -75,7 +75,7 @@ export default function HomePage() {
 
           <article>
             <strong>Saldo</strong>
-            <Value data-test="total-amount" color={saldo < 0 ? "negativo" : "positivo"}>{saldo.toString().replace(".",",")}</Value>
+            <Value data-test="total-amount" color={saldo < 0 ? "negativo" : "positivo"}>{saldo.toString().replace(".",",").replace("-","")}</Value>
           </article>
         </TransactionsContainer>
 
