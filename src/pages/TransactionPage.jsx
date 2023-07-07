@@ -32,7 +32,7 @@ export default function TransactionsPage() {
       <TransactionsContainer>
         <h1>Nova TRANSAÇÃO</h1>
         <form onSubmit={sendForm}>
-          <input placeholder="Valor" data-test="registry-amount" ref={valor} type="number" required />
+          <input placeholder="Valor" data-test="registry-amount-input" ref={valor} type="number" required />
           <input placeholder="Descrição" data-test="registry-name-input" ref={descripton} type="text" required />
           <button data-test="registry-save">Salvar {params}</button>
         </form>
