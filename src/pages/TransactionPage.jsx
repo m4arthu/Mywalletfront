@@ -16,7 +16,7 @@ export default function TransactionsPage() {
     event.preventDefault()
     axios.post(`${import.meta.env.VITE_API_URL}/transations`,
       {
-        value: valor.current.value,
+        value: Number(valor.current.value),
         descripton: descripton.current.value,
         type: params
       })
@@ -32,7 +32,7 @@ export default function TransactionsPage() {
       <TransactionsContainer>
         <h1>Nova TRANSAÇÃO</h1>
         <form onSubmit={sendForm}>
-          <input placeholder="Valor" data-test="registry-amount-input" ref={valor} type="number" required />
+          <input placeholder="Valor" data-test="registry-amount-input" ref={valor} type="text" required />
           <input placeholder="Descrição" data-test="registry-name-input" ref={descripton} type="text" required />
           <button data-test="registry-save">Salvar {params}</button>
         </form>
