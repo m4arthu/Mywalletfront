@@ -7,14 +7,6 @@ import TransactionsPage from "./pages/TransactionPage"
 import { AuthProvider } from "./contexts/authContext.jsx"
 export default function App() {
 
-  const isLoged = () => {
-    const token = localStorage.getItem("token")
-    if (token) {
-      return true
-    } else {
-      return false
-    }
-  }
 
   return (
     <PagesContainer>
@@ -23,8 +15,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<SignInPage />} />
             <Route path="/cadastro" element={<SignUpPage />} />
-            <Route path="/home" element={isLoged() ? <HomePage /> : <Navigate to={"/"} />} />
-            <Route path="/nova-transacao/:tipo" element={isLoged() ? <TransactionsPage /> : <Navigate to={"/"} />} />
+            <Route path="/home" element={<HomePage/>} />
+            <Route path="/nova-transacao/:tipo" element={<TransactionsPage />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

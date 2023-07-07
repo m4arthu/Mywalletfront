@@ -5,6 +5,15 @@ import { useNavigate } from "react-router-dom"
 export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
+  const isLoged = () =>{
+   let token =  localStorage.getItem("token")
+   if(token){
+    return true
+   } else {
+    return false
+   }
+  }
+  
   const login = (email, password) => {
     axios.post(`${import.meta.env.VITE_API_URL}/`, {
       email: email,
@@ -41,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       })
   }
   return (
-    <AuthContext.Provider value={{ login, register }}>
+    <AuthContext.Provider value={{ login, register, isLoged }}>
       {children}
     </AuthContext.Provider>
   )
