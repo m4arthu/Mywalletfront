@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 
 export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
@@ -8,24 +8,22 @@ export const AuthProvider = ({ children }) => {
   const isLoged = () =>{
    let token =  localStorage.getItem("token")
    if(token){
+    axios.defaults.headers.common['Authorization'] = token
     return true
    } else {
     return false
    }
   }
   
-  const login = (email, password) => {
+  const login = (email, password,setDisabled) => {
     axios.post(`${import.meta.env.VITE_API_URL}/`, {
       email: email,
       password: password
     })
       .then(async(res) => {
         localStorage.setItem("token", res.data)
-        const token = localStorage.getItem("token")
-        axios.defaults.headers.common['Authorization'] = token;
-        if(token){
-          navigate("/home")
-        }
+        setDisabled(false)
+        navigate("/home")
       })
       .catch((err) => {
         alert(err.response.data)
